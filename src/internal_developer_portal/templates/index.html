@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Developer Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen antialiased relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
+
+    <!-- Arka Plan Dekoratif Işık Efektleri -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Üst Menü / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/40 backdrop-blur-xl px-8 py-4 flex justify-between items-center sticky top-0 z-50 shadow-2xl shadow-cyan-950/20">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                <span class="text-white font-bold text-sm">ID</span>
+            </div>
+            <div>
+                <h1 class="text-sm font-bold tracking-wide text-slate-100">Internal Developer Portal</h1>
+                <p class="text-[10px] text-slate-400 font-mono">Infrastructure & Systems Control Center</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="hidden sm:inline-flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full font-medium">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Sistem Aktif
+            </span>
+            <a href="/docs" target="_blank" class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-lg shadow-cyan-600/20 transition-all duration-300 hover:scale-[1.02]">Swagger Docs</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-4 gap-8 relative z-10">
+        
+        <!-- Sol Taraf: Duyurular, Araçlar, DB/Config Durumu ve Servis Ekleme -->
+        <div class="space-y-6">
+            <!-- Duyurular Paneli -->
+            <section class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-amber-500/40 transition-all duration-300">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-amber-400 to-orange-500"></div>
+                <h2 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-2 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A40.015 40.015 0 017 6h183m0 0v13m0-13l-4-4"></path></svg>
+                    Duyurular
+                </h2>
+                <p class="text-xs text-slate-300 leading-relaxed">Yarın saat 02:00'de planlı sunucu bakımı gerçekleştirilecektir.</p>
+            </section>
+
+            <!-- Veritabanı & Yapılandırma (Config) Durumu -->
+            <section class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-indigo-500/40 transition-all duration-300">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-indigo-400 to-purple-500"></div>
+                <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-3 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                    DB & Yapılandırma
+                </h2>
+                <div class="space-y-2.5 text-xs">
+                    <div class="flex justify-between items-center bg-slate-950/60 p-2 rounded-xl border border-slate-800/50">
+                        <span class="text-slate-400">PostgreSQL Cluster</span>
+                        <span class="text-emerald-400 font-mono text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Bağlı (Healthy)</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-950/60 p-2 rounded-xl border border-slate-800/50">
+                        <span class="text-slate-400">Redis Cache</span>
+                        <span class="text-emerald-400 font-mono text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Aktif</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-950/60 p-2 rounded-xl border border-slate-800/50">
+                        <span class="text-slate-400">Environment</span>
+                        <span class="text-cyan-400 font-mono text-[10px] bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">production.env</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Geliştirici Araçları (Toolkit) -->
+            <section class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-emerald-500/40 transition-all duration-300">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-emerald-400 to-teal-500"></div>
+                <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3.5 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                    Geliştirici Araçları
+                </h2>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="#" class="text-slate-300 hover:text-emerald-400 transition-colors flex items-center justify-between p-1 rounded hover:bg-slate-800/50">Jira Görev Tahtası <span class="text-emerald-500 font-mono">→</span></a></li>
+                    <li><a href="#" class="text-slate-300 hover:text-emerald-400 transition-colors flex items-center justify-between p-1 rounded hover:bg-slate-800/50">Confluence Dokümanları <span class="text-emerald-500 font-mono">→</span></a></li>
+                    <li><a href="https://github.com/kozakgizem/internal-developer-portal" target="_blank" class="text-slate-300 hover:text-emerald-400 transition-colors flex items-center justify-between p-1 rounded hover:bg-slate-800/50">GitHub Repository <span class="text-emerald-500 font-mono">→</span></a></li>
+                </ul>
+            </section>
+
+            <!-- Yeni Servis Ekleme Formu -->
+            <section class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-2xl p-5 shadow-2xl relative overflow-hidden group hover:border-cyan-500/40 transition-all duration-300">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-cyan-400 to-blue-500"></div>
+                <h2 class="text-xs font-bold uppercase tracking-wider text-cyan-400 mb-4 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Yeni Servis Ekle
+                </h2>
+                <form id="addServiceForm" class="space-y-3.5 text-xs">
+                    <div>
+                        <label class="block text-slate-400 mb-1 font-medium">Servis Adı</label>
+                        <input type="text" id="serviceName" required placeholder="örn. Notification Service" class="w-full bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1 font-medium">Port</label>
+                        <input type="number" id="servicePort" required placeholder="örn. 8083" class="w-full bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 rounded-xl text-slate-100 placeholder-slate-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1 font-medium">Durum</label>
+                        <select id="serviceStatus" class="w-full bg-slate-950/80 border border-slate-800 px-3.5 py-2.5 rounded-xl text-slate-100 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+                            <option value="Aktif">Aktif</option>
+                            <option value="Bakımda">Bakımda</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-cyan-600/30 transition-all duration-300 hover:scale-[1.02] cursor-pointer">Servisi Kaydet</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- Sağ Taraf: Dashboard, Servis Sağlık Paneli ve Canlı Log Konsolu -->
+        <div class="lg:col-span-3 space-y-6">
+            
+            <!-- Arama ve Filtreleme Alanı -->
+            <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-2xl">
+                <div class="relative w-full sm:w-1/2">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </span>
+                    <input type="text" id="searchInput" placeholder="Servis ara..." class="bg-slate-950/80 border border-slate-800 pl-10 pr-4 py-2.5 rounded-xl text-xs text-slate-100 placeholder-slate-600 w-full focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+                </div>
+                <div class="flex gap-1.5 w-full sm:w-auto">
+                    <button id="filterAllBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer">Tümü</button>
+                    <button id="filterActiveBtn" class="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer">Aktifler</button>
+                    <button id="filterMaintenanceBtn" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer">Bakımda</button>
+                </div>
+            </div>
+
+            <!-- Servis Kartları / Dashboard -->
+            <section class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-2xl p-6 shadow-2xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        Servis Sağlık Paneli
+                    </h2>
+                </div>
+                
+                <!-- Servislerin dinamik olarak yükleneceği alan -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- JavaScript burayı otomatik dolduracak -->
+                </div>
+            </section>
+
+            <!-- YENİ EKLENEN BÖLÜM: Canlı Sistem Logları & Hata İzleme Konsolu -->
+            <section class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-2xl p-6 shadow-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-rose-400 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        Sistem Logları & Hata İzleme Akışı (Real-time Logs)
+                    </h2>
+                    <span class="text-[10px] font-mono text-slate-400 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">Tail -f /var/log/backend</span>
+                </div>
+                
+                <!-- Log Konsolu Ekranı -->
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-[11px] space-y-2 h-44 overflow-y-auto">
+                    <div class="text-slate-500">[02:55:10] [INFO] API Gateway started successfully on port 8080.</div>
+                    <div class="text-slate-400">[02:56:15] [DEBUG] Database pool connection established with 10 max workers.</div>
+                    <div class="text-amber-400">[02:57:02] [WARN] Auth Service response latency high: 420ms.</div>
+                    <div class="text-emerald-400">[02:58:00] [INFO] Health check probe succeeded for all active nodes.</div>
+                    <div class="text-rose-400 flex items-center justify-between">
+                        <span>[02:58:30] [ERROR] Payment Service timeout exception on endpoint /pay/verify.</span>
+                        <span class="bg-rose-500/20 text-rose-300 px-1.5 py-0.5 rounded text-[9px] border border-rose-500/30">İnceleniyor</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <script>
+        let allServices = [];
+        let currentFilter = 'Tümü';
+        let searchQuery = '';
+
+        async function fetchServices() {
+            try {
+                const response = await fetch('/api/services');
+                const data = await response.json();
+                allServices = data.services;
+                filterAndRender();
+            } catch (error) {
+                console.error("Servisler yüklenirken hata oluştu:", error);
+            }
+        }
+
+        function renderServices(servicesToRender) {
+            const container = document.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2');
+            container.innerHTML = ''; 
+
+            if (servicesToRender.length === 0) {
+                container.innerHTML = '<p class="text-slate-500 text-xs col-span-2 text-center py-12">Aranan kriterlere uygun servis bulunamadı.</p>';
+                return;
+            }
+
+            servicesToRender.forEach(service => {
+                const isAktif = service.status === "Aktif";
+                const badgeClass = isAktif 
+                    ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-sm shadow-emerald-500/10" 
+                    : "bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-sm shadow-amber-500/10";
+
+                const card = `
+                    <div class="bg-slate-950/90 border border-slate-800/80 rounded-2xl p-5 flex flex-col justify-between hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/5 transition-all duration-300 group">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-bold text-sm text-slate-100 group-hover:text-cyan-400 transition-colors">${service.name}</h3>
+                                <span class="px-2.5 py-1 text-[10px] font-bold rounded-full border ${badgeClass}">${service.status}</span>
+                            </div>
+                            <div class="space-y-1.5 text-xs text-slate-400 bg-slate-900/50 p-3 rounded-xl border border-slate-800/50">
+                                <p class="flex justify-between">Port: <span class="text-cyan-400 font-mono font-semibold">${service.port}</span></p>
+                                <p class="flex justify-between">ID: <span class="text-slate-500 font-mono">#${service.id}</span></p>
+                            </div>
+                            <div id="health-result-${service.id}" class="mt-3 text-xs font-mono font-medium"></div>
+                        </div>
+                        <div class="mt-5 pt-3.5 border-t border-slate-900 flex justify-between items-center">
+                            <button onclick="checkHealth(${service.id})" class="text-xs bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer font-semibold shadow-sm hover:scale-105">Sağlık Testi</button>
+                            <button onclick="deleteService(${service.id})" class="text-xs bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer font-semibold shadow-sm hover:scale-105">Sil</button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        function filterAndRender() {
+            const filtered = allServices.filter(service => {
+                const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesFilter = currentFilter === 'Tümü' || service.status === currentFilter;
+                return matchesSearch && matchesFilter;
+            });
+            renderServices(filtered);
+        }
+
+        async function checkHealth(id) {
+            const resultDiv = document.getElementById(`health-result-${id}`);
+            resultDiv.innerHTML = '<span class="text-amber-400 animate-pulse flex items-center gap-1.5">Kontrol ediliyor...</span>';
+
+            try {
+                const response = await fetch(`/api/services/${id}/health`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (data.healthy) {
+                        resultDiv.innerHTML = '<span class="text-emerald-400 flex items-center gap-1.5">● Servis Erişilebilir (Port Açık)</span>';
+                    } else {
+                        resultDiv.innerHTML = '<span class="text-rose-400 flex items-center gap-1.5">● Servis Yanıt Vermiyor (Port Kapalı)</span>';
+                    }
+                } else {
+                    resultDiv.innerHTML = '<span class="text-rose-400">Kontrol başarısız oldu.</span>';
+                }
+            } catch (error) {
+                console.error("Sağlık kontrolü hatası:", error);
+                resultDiv.innerHTML = '<span class="text-rose-400">Bağlantı hatası.</span>';
+            }
+        }
+
+        async function deleteService(id) {
+            if (!confirm("Bu servisi silmek istediğinize emin misiniz?")) return;
+
+            try {
+                const response = await fetch(`/api/services/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    fetchServices(); 
+                } else {
+                    alert("Servis silinirken bir hata oluştu.");
+                }
+            } catch (error) {
+                console.error("Silme bağlantı hatası:", error);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            filterAndRender();
+        });
+
+        document.getElementById('filterAllBtn').addEventListener('click', () => {
+            currentFilter = 'Tümü';
+            filterAndRender();
+        });
+
+        document.getElementById('filterActiveBtn').addEventListener('click', () => {
+            currentFilter = 'Aktif';
+            filterAndRender();
+        });
+
+        document.getElementById('filterMaintenanceBtn').addEventListener('click', () => {
+            currentFilter = 'Bakımda';
+            filterAndRender();
+        });
+
+        document.getElementById('addServiceForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('serviceName').value;
+            const port = parseInt(document.getElementById('servicePort').value);
+            const status = document.getElementById('serviceStatus').value;
+
+            try {
+                const response = await fetch('/api/services', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, port, status })
+                });
+
+                if (response.ok) {
+                    document.getElementById('addServiceForm').reset();
+                    fetchServices(); 
+                } else {
+                    alert("Servis eklenirken bir hata oluştu.");
+                }
+            } catch (error) {
+                console.error("Bağlantı hatası:", error);
+            }
+        });
+
+        fetchServices();
+    </script>
+</body>
+</html>
