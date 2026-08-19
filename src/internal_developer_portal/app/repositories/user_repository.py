@@ -17,9 +17,13 @@ class UserRepository:
 
     # Pydantic şemasından gelen verilerle yeni kullanıcı oluşturan ve veritabanına kaydeden statik metot
     @staticmethod
-    def create_user(db: Session, user: UserCreate):
+    def create_user(db: Session, user: UserCreate, hashed_password: str):
         # Gelen verilerle SQLAlchemy ORM model nesnesi üretilir (UserModel kullanıldı)
-        db_user = UserModel(username=user.username, email=user.email)
+        db_user = UserModel(
+            username=user.username, 
+            email=user.email, 
+            hashed_password=hashed_password
+        )
         
         # Nesne veritabanı oturumuna eklenir
         db.add(db_user)

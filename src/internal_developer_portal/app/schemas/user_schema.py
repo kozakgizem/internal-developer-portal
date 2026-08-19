@@ -2,10 +2,10 @@ from pydantic import BaseModel, EmailStr
 
 class UserBase(BaseModel):
     username: str
-    email: str
+    email: EmailStr
 
 class UserCreate(UserBase):
-    pass
+    password: str  # <--- Şifreyi sadece oluşturma şemasına ekliyoruz
 
 class UserResponse(UserBase):
     id: int
