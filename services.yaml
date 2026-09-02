@@ -1,0 +1,7 @@
+services:
+  - name: "auth-service"
+    port: 8000
+    status: "active"
+  - name: "deployment-service"
+    port: 8001
+    status: "maintenance"

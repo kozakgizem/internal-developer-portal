@@ -6,11 +6,12 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.models.user_model import UserModel
+from app.core.config import settings
 
-# Gizli anahtar ve algoritma (Gerçek projelerde çevre değişkenlerinde .env içinde saklanır)
-SECRET_KEY = "gizli-anahtar-buraya-gelecek-cok-gizli-bir-metin"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+# Merkezi config'den güvenlik ayarlarını alıyoruz
+SECRET_KEY = settings.SECRET_KEY
+ALGORITHM = settings.ALGORITHM
+ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
 
 # Token alınacak endpoint yolu (auth_router tanımına göre güncellenebilir)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
@@ -32,7 +33,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None) -> s
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(minutes=15)
+        expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)

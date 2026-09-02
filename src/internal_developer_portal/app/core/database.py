@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from app.core.config import settings
 
-# Proje dizininde 'idp.db' adında SQLite veritabanı dosyası oluşturur
-SQLALCHEMY_DATABASE_URL = "sqlite:///./idp.db"
+# Merkezi config'den (settings) veritabanı URL'ini alıyoruz
+SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}

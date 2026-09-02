@@ -20,6 +20,9 @@ from app.models.service_model import ServiceModel
 # Moduler router'lar ice aktarilir
 from app.api.user_router import router as user_router
 from app.api.service_router import router as service_router
+from app.core.file_manager import read_json_config, update_json_config, read_yaml_services
+
+
 
 # Logger tanımlanır
 logger = get_logger(__name__)
@@ -41,7 +44,20 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+@app.get("/management/config/json", tags=["Temel Yönetim"])
+def get_json_config():
+    """JSON formatındaki portal yapılandırmasını okur."""
+    return read_json_config()
 
+@app.put("/management/config/json", tags=["Temel Yönetim"])
+def modify_json_config(new_settings: dict):
+    """Dosya işlemleri kullanarak JSON yapılandırmasını günceller."""
+    return update_json_config(new_settings)
+
+@app.get("/management/services/yaml", tags=["Temel Yönetim"])
+def get_yaml_services():
+    """YAML formatındaki servis yapılandırma dosyasını okur."""
+    return read_yaml_services()
 # CORS politikasi: Tum kaynaklardan gelen isteklere izin verilir
 app.add_middleware(
     CORSMiddleware,
