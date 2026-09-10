@@ -9,8 +9,8 @@ Base.metadata.create_all(bind=engine)
 def create_initial_user():
     db = SessionLocal()
     # Test kullanıcısı
-    email = "test@example.com"
-    password = "password123"
+    email = "gizem@example.com"
+    password = "gizem123"
     
     # Kullanıcı zaten var mı kontrol et
     user = db.query(UserModel).filter(UserModel.email == email).first()
