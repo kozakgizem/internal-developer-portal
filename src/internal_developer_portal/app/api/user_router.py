@@ -15,6 +15,14 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     # İş mantığını yönetmesi için UserService katmanı çağrılır
     return UserService.create_user(db=db, user=user)
 
+# Tüm kullanıcıları listeleyen endpoint (GET isteği)
+@router.get("/", response_model=list[UserResponse])
+def get_users(db: Session = Depends(get_db)):
+    """
+    Sistemdeki tüm kullanıcıları listeler.
+    """
+    return UserService.get_all_users(db=db)
+
 # Giriş yapmış kullanıcının bilgilerini getiren JWT korumalı endpoint
 @router.get("/me", response_model=UserResponse)
 def get_current_user_info(current_user: UserModel = Depends(get_current_user)):

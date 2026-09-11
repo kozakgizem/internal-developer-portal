@@ -24,3 +24,8 @@ class UserService:
         
         # 2. İş kuralı başarılıysa, repository katmanı çağrılarak veritabanına kayıt yapılır
         return UserRepository.create_user(db, user=user, hashed_password=hashed_password)
+
+    # Tüm kullanıcıları listeleyen statik metot
+    @staticmethod
+    def get_all_users(db: Session):
+        return UserRepository.get_all_users(db=db)

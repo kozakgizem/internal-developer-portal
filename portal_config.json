@@ -1,3 +1,5 @@
 {
-    "additionalProp1": {}
+    "additionalProp1": {
+        "test": "merhaba"
+    }
 }

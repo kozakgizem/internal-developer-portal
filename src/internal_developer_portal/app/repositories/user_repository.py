@@ -15,6 +15,12 @@ class UserRepository:
         # UserModel tablosunda gelen email ile eşleşen ilk kaydı döndürür
         return db.query(UserModel).filter(UserModel.email == email).first()
 
+    # Tüm kullanıcıları veritabanından çeken statik metot
+    @staticmethod
+    def get_all_users(db: Session):
+        # UserModel tablosundaki tüm kayıtları liste olarak döndürür
+        return db.query(UserModel).all()
+
     # Pydantic şemasından gelen verilerle yeni kullanıcı oluşturan ve veritabanına kaydeden statik metot
     @staticmethod
     def create_user(db: Session, user: UserCreate, hashed_password: str):
