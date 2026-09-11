@@ -97,3 +97,31 @@
 2026-09-11 03:37:10,462 [INFO] app.main: Sistem logları listelendi.
 2026-09-11 03:50:47,280 [INFO] app.main: Health check (sağlık durumu) kontrol edildi.
 2026-09-11 04:02:11,675 [INFO] app.main: Uygulama kapatılıyor...
+2026-09-11 11:47:04,700 [INFO] app.main: Uygulama başarıyla başlatıldı ve ayakta!
+2026-09-11 11:47:16,471 [INFO] app.main: Kök dizine (root) istek atıldı.
+2026-09-11 11:50:16,328 [INFO] app.main: Health check (sağlık durumu) kontrol edildi.
+2026-09-11 11:50:28,419 [INFO] app.main: Sunucu sistem metrikleri (CPU, RAM, Disk) başarıyla okundu.
+2026-09-11 11:50:28,470 [INFO] app.main: Sistem logları listelendi.
+2026-09-11 11:50:55,549 [INFO] app.main: Sunucu sistem metrikleri (CPU, RAM, Disk) başarıyla okundu.
+2026-09-11 11:50:55,564 [INFO] app.main: Sistem logları listelendi.
+2026-09-11 11:54:09,939 [INFO] app.main: Uygulama kapatılıyor...
+2026-09-11 12:43:55,923 [INFO] app.main: Uygulama başarıyla başlatıldı ve ayakta!
+2026-09-11 12:48:03,267 [INFO] app.main: Health check (sağlık durumu) kontrol edildi.
+2026-09-11 12:48:12,352 [INFO] app.main: Sunucu sistem metrikleri (CPU, RAM, Disk) başarıyla okundu.
+2026-09-11 12:48:12,362 [INFO] app.main: Sistem logları listelendi.
+2026-09-11 14:21:12,149 [INFO] app.main: Health check (sağlık durumu) kontrol edildi.
+2026-09-11 14:21:36,371 [INFO] app.main: Sunucu sistem metrikleri (CPU, RAM, Disk) başarıyla okundu.
+2026-09-11 14:21:36,395 [INFO] app.main: Sistem logları listelendi.
+2026-09-11 14:40:42,652 [INFO] app.main: Uygulama kapatılıyor...
+2026-09-11 14:40:44,392 [WARNING] app.main: Static directory not found: static
+2026-09-11 14:40:44,393 [INFO] app.main: Uygulama başarıyla başlatıldı ve ayakta!
+2026-09-11 14:40:54,382 [INFO] app.main: Uygulama kapatılıyor...
+2026-09-11 14:40:55,808 [WARNING] app.main: Static directory not found: web
+2026-09-11 14:40:55,809 [INFO] app.main: Uygulama başarıyla başlatıldı ve ayakta!
+2026-09-11 14:42:32,644 [INFO] app.main: Uygulama kapatılıyor...
+2026-09-11 14:43:22,703 [WARNING] app.main: Static directory not found: web
+2026-09-11 14:43:22,704 [INFO] app.main: Uygulama başarıyla başlatıldı ve ayakta!
+2026-09-11 14:45:07,887 [INFO] app.main: Uygulama kapatılıyor...
+2026-09-11 14:47:07,878 [WARNING] app.main: Static directory not found: web
+2026-09-11 14:47:07,879 [INFO] app.main: Uygulama başarıyla başlatıldı ve ayakta!
+2026-09-11 15:24:13,748 [INFO] app.main: Uygulama kapatılıyor...

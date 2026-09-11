@@ -1,8 +1,11 @@
 import datetime
+import os
 from contextlib import asynccontextmanager
 import psutil
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import text
 from app.api.auth_router import router as auth_router
@@ -21,8 +24,6 @@ from app.models.service_model import ServiceModel
 from app.api.user_router import router as user_router
 from app.api.service_router import router as service_router
 from app.core.file_manager import read_json_config, update_json_config, read_yaml_services
-
-
 
 # Logger tanımlanır
 logger = get_logger(__name__)
@@ -44,6 +45,7 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
 @app.get("/management/config/json", tags=["Temel Yönetim"])
 def get_json_config():
     """JSON formatındaki portal yapılandırmasını okur."""
@@ -58,6 +60,7 @@ def modify_json_config(new_settings: dict):
 def get_yaml_services():
     """YAML formatındaki servis yapılandırma dosyasını okur."""
     return read_yaml_services()
+
 # CORS politikasi: Tum kaynaklardan gelen isteklere izin verilir
 app.add_middleware(
     CORSMiddleware,
@@ -167,3 +170,19 @@ def get_system_metrics():
             "usage_percent": disk_percent
         }
     }
+
+# Flutter Web için Statik Dosyalar ve SPA Routing
+static_dir = "web"
+if os.path.exists(static_dir):
+    app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
+    logger.info(f"Static files mounted from: {static_dir}")
+    
+    @app.get("/{full_path:path}")
+    async def serve_spa(full_path: str):
+        """Flutter web için SPA routing"""
+        index_path = os.path.join(static_dir, "index.html")
+        if os.path.exists(index_path):
+            return FileResponse(index_path)
+        return {"error": "index.html not found"}
+else:
+    logger.warning(f"Static directory not found: {static_dir}")
