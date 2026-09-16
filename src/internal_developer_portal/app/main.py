@@ -186,3 +186,8 @@ if os.path.exists(static_dir):
         return {"error": "index.html not found"}
 else:
     logger.warning(f"Static directory not found: {static_dir}")
+
+# Bu kısım en solda (hiç boşluk bırakmadan) olmalı:
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000, reload=False)

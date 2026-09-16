@@ -21,7 +21,7 @@ def create_initial_user():
         print(f"Kullanıcı oluşturuldu: {email}")
     else:
         print("Kullanıcı zaten mevcut.")
-    db.close()
+    db.close()  
 
 if __name__ == "__main__":
     create_initial_user()
